@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="antremantakipModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Antreman">
+    <Key>
+      <PropertyRef Name="No" />
+    </Key>
+    <Property Name="No" Type="Int32" Nullable="false" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AntremanTurNo" Type="Int32" />
+    <NavigationProperty Name="AntremanProgram" Relationship="Self.FK_AntremanProgram_Antreman" FromRole="Antreman" ToRole="AntremanProgram" />
+  </EntityType>
+  <EntityType Name="AntremanProgram">
+    <Key>
+      <PropertyRef Name="No" />
+    </Key>
+    <Property Name="No" Type="Int32" Nullable="false" />
+    <Property Name="AntremanNo" Type="Int32" />
+    <Property Name="AntremanBaslama" Type="DateTime" Precision="0" />
+    <Property Name="AntremanBitis" Type="DateTime" Precision="0" />
+    <Property Name="GunNo" Type="Int32" />
+    <NavigationProperty Name="Antreman" Relationship="Self.FK_AntremanProgram_Antreman" FromRole="AntremanProgram" ToRole="Antreman" />
+    <NavigationProperty Name="AntremanYoklama" Relationship="Self.FK_AntremanYoklama_AntremanProgram" FromRole="AntremanProgram" ToRole="AntremanYoklama" />
+  </EntityType>
+  <EntityType Name="AntremanYoklama">
+    <Key>
+      <PropertyRef Name="No" />
+    </Key>
+    <Property Name="No" Type="Int32" Nullable="false" />
+    <Property Name="AntremanProgramNo" Type="Int32" />
+    <Property Name="KullaniciNo" Type="Int32" />
+    <Property Name="Tarih" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="AntremanProgram" Relationship="Self.FK_AntremanYoklama_AntremanProgram" FromRole="AntremanYoklama" ToRole="AntremanProgram" />
+    <NavigationProperty Name="Kullanici" Relationship="Self.FK_AntremanYoklama_Kullanici" FromRole="AntremanYoklama" ToRole="Kullanici" />
+  </EntityType>
+  <EntityType Name="Duyuru">
+    <Key>
+      <PropertyRef Name="No" />
+    </Key>
+    <Property Name="No" Type="Int32" Nullable="false" />
+    <Property Name="DuyuruBaslik" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DuyuruMetin" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="tarih" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="Kullanici">
+    <Key>
+      <PropertyRef Name="No" />
+    </Key>
+    <Property Name="No" Type="Int32" Nullable="false" />
+    <Property Name="TcKimlikNo" Type="Int32" />
+    <Property Name="şifre" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DogumTarihi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="KayitTarihi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AntremanYoklama" Relationship="Self.FK_AntremanYoklama_Kullanici" FromRole="Kullanici" ToRole="AntremanYoklama" />
+  </EntityType>
+  <EntityType Name="KullaniciRol">
+    <Key>
+      <PropertyRef Name="No" />
+    </Key>
+    <Property Name="No" Type="Int32" Nullable="false" />
+    <Property Name="KullaniciNo" Type="Int32" />
+    <Property Name="RolNo" Type="Int32" />
+    <NavigationProperty Name="Rol" Relationship="Self.FK_KullaniciRol_Rol" FromRole="KullaniciRol" ToRole="Rol" />
+  </EntityType>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="no" />
+    </Key>
+    <Property Name="no" Type="Int32" Nullable="false" />
+    <Property Name="ıp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="tarayici" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="tarih" Type="DateTime" Precision="3" />
+    <Property Name="metot" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="parametre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Metot">
+    <Key>
+      <PropertyRef Name="No" />
+    </Key>
+    <Property Name="No" Type="Int32" Nullable="false" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="MetotRol" Relationship="Self.FK_MetotRol_Metot" FromRole="Metot" ToRole="MetotRol" />
+  </EntityType>
+  <EntityType Name="MetotRol">
+    <Key>
+      <PropertyRef Name="No" />
+    </Key>
+    <Property Name="No" Type="Int32" Nullable="false" />
+    <Property Name="MetotNo" Type="Int32" />
+    <Property Name="RolNo" Type="Int32" />
+    <NavigationProperty Name="Metot" Relationship="Self.FK_MetotRol_Metot" FromRole="MetotRol" ToRole="Metot" />
+    <NavigationProperty Name="Rol" Relationship="Self.FK_MetotRol_Rol" FromRole="MetotRol" ToRole="Rol" />
+  </EntityType>
+  <EntityType Name="Rol">
+    <Key>
+      <PropertyRef Name="No" />
+    </Key>
+    <Property Name="No" Type="Int32" Nullable="false" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="KullaniciRol" Relationship="Self.FK_KullaniciRol_Rol" FromRole="Rol" ToRole="KullaniciRol" />
+    <NavigationProperty Name="MetotRol" Relationship="Self.FK_MetotRol_Rol" FromRole="Rol" ToRole="MetotRol" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_AntremanProgram_Antreman">
+    <End Role="Antreman" Type="Self.Antreman" Multiplicity="0..1" />
+    <End Role="AntremanProgram" Type="Self.AntremanProgram" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Antreman">
+        <PropertyRef Name="No" />
+      </Principal>
+      <Dependent Role="AntremanProgram">
+        <PropertyRef Name="AntremanNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AntremanYoklama_AntremanProgram">
+    <End Role="AntremanProgram" Type="Self.AntremanProgram" Multiplicity="0..1" />
+    <End Role="AntremanYoklama" Type="Self.AntremanYoklama" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AntremanProgram">
+        <PropertyRef Name="No" />
+      </Principal>
+      <Dependent Role="AntremanYoklama">
+        <PropertyRef Name="AntremanProgramNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AntremanYoklama_Kullanici">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+    <End Role="AntremanYoklama" Type="Self.AntremanYoklama" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="No" />
+      </Principal>
+      <Dependent Role="AntremanYoklama">
+        <PropertyRef Name="KullaniciNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KullaniciRol_Rol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+    <End Role="KullaniciRol" Type="Self.KullaniciRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="No" />
+      </Principal>
+      <Dependent Role="KullaniciRol">
+        <PropertyRef Name="RolNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MetotRol_Metot">
+    <End Role="Metot" Type="Self.Metot" Multiplicity="0..1" />
+    <End Role="MetotRol" Type="Self.MetotRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Metot">
+        <PropertyRef Name="No" />
+      </Principal>
+      <Dependent Role="MetotRol">
+        <PropertyRef Name="MetotNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MetotRol_Rol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+    <End Role="MetotRol" Type="Self.MetotRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="No" />
+      </Principal>
+      <Dependent Role="MetotRol">
+        <PropertyRef Name="RolNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="antremantakipEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Antreman" EntityType="Self.Antreman" />
+    <EntitySet Name="AntremanProgram" EntityType="Self.AntremanProgram" />
+    <EntitySet Name="AntremanYoklama" EntityType="Self.AntremanYoklama" />
+    <EntitySet Name="Duyuru" EntityType="Self.Duyuru" />
+    <EntitySet Name="Kullanici" EntityType="Self.Kullanici" />
+    <EntitySet Name="KullaniciRol" EntityType="Self.KullaniciRol" />
+    <EntitySet Name="Log" EntityType="Self.Log" />
+    <EntitySet Name="Metot" EntityType="Self.Metot" />
+    <EntitySet Name="MetotRol" EntityType="Self.MetotRol" />
+    <EntitySet Name="Rol" EntityType="Self.Rol" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK_AntremanProgram_Antreman" Association="Self.FK_AntremanProgram_Antreman">
+      <End Role="Antreman" EntitySet="Antreman" />
+      <End Role="AntremanProgram" EntitySet="AntremanProgram" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AntremanYoklama_AntremanProgram" Association="Self.FK_AntremanYoklama_AntremanProgram">
+      <End Role="AntremanProgram" EntitySet="AntremanProgram" />
+      <End Role="AntremanYoklama" EntitySet="AntremanYoklama" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AntremanYoklama_Kullanici" Association="Self.FK_AntremanYoklama_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="AntremanYoklama" EntitySet="AntremanYoklama" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KullaniciRol_Rol" Association="Self.FK_KullaniciRol_Rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="KullaniciRol" EntitySet="KullaniciRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MetotRol_Metot" Association="Self.FK_MetotRol_Metot">
+      <End Role="Metot" EntitySet="Metot" />
+      <End Role="MetotRol" EntitySet="MetotRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MetotRol_Rol" Association="Self.FK_MetotRol_Rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="MetotRol" EntitySet="MetotRol" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

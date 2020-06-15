@@ -1,0 +1,43 @@
+﻿@model WebApplication4.Models.Duyuru
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Duyuru</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DuyuruBaslik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DuyuruBaslik)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DuyuruMetin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DuyuruMetin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tarih)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tarih)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.No }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

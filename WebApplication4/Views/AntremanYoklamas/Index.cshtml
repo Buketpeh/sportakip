@@ -1,0 +1,46 @@
+﻿@model IEnumerable<WebApplication4.Models.AntremanYoklama>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Yeni Yoklama", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Tarih)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AntremanProgram.No)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kullanici.Ad)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tarih)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AntremanProgram.No)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kullanici.Ad)
+        </td>
+        <td>
+            @Html.ActionLink("Düzenle", "Edit", new { id=item.No }) |
+            @Html.ActionLink("Detaylar", "Details", new { id=item.No }) |
+            @Html.ActionLink("Sil", "Delete", new { id=item.No })
+        </td>
+    </tr>
+}
+
+</table>

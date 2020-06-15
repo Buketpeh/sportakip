@@ -1,0 +1,52 @@
+﻿@model IEnumerable<WebApplication4.Models.AntremanProgram>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Yeni Antreman Programı ekle", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AntremanBaslama)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AntremanBitis)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GunNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Antreman.Ad)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AntremanBaslama)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AntremanBitis)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GunNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Antreman.Ad)
+        </td>
+        <td>
+            @Html.ActionLink("Düzenle", "Edit", new { id=item.No }) |
+            @Html.ActionLink("Detaylar", "Details", new { id=item.No }) |
+            @Html.ActionLink("Sil", "Delete", new { id=item.No })
+        </td>
+    </tr>
+}
+
+</table>

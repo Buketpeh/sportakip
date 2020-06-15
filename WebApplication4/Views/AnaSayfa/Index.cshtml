@@ -1,0 +1,46 @@
+﻿@model IEnumerable<WebApplication4.Models.Duyuru>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Yeni duyuru ekle", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DuyuruBaslik)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DuyuruMetin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tarih)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DuyuruBaslik)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DuyuruMetin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tarih)
+        </td>
+        <td>
+           
+            @Html.ActionLink("Detaylar", "Details", new { id=item.No })
+       
+        </td>
+    </tr>
+}
+
+</table>

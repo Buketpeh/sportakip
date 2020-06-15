@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2e4cdfb717324fab8939c05d6923ef62" Name="Diagram1">
+        <EntityTypeShape EntityType="antremantakipModel.Antreman" Width="1.5" PointX="5.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="antremantakipModel.AntremanProgram" Width="1.5" PointX="8" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="antremantakipModel.AntremanYoklama" Width="1.5" PointX="10.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="antremantakipModel.Duyuru" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="antremantakipModel.Kullanici" Width="1.5" PointX="8" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="antremantakipModel.KullaniciRol" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="antremantakipModel.Log" Width="1.5" PointX="2.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="antremantakipModel.Metot" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="antremantakipModel.MetotRol" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="antremantakipModel.Rol" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="antremantakipModel.sysdiagrams" Width="1.5" PointX="4.75" PointY="7.125" IsExpanded="true" />
+        <AssociationConnector Association="antremantakipModel.FK_AntremanProgram_Antreman" ManuallyRouted="false" />
+        <AssociationConnector Association="antremantakipModel.FK_AntremanYoklama_AntremanProgram" ManuallyRouted="false" />
+        <AssociationConnector Association="antremantakipModel.FK_AntremanYoklama_Kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="antremantakipModel.FK_KullaniciRol_Rol" ManuallyRouted="false" />
+        <AssociationConnector Association="antremantakipModel.FK_MetotRol_Metot" ManuallyRouted="false" />
+        <AssociationConnector Association="antremantakipModel.FK_MetotRol_Rol" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

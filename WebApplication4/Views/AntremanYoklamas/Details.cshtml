@@ -1,0 +1,43 @@
+﻿@model WebApplication4.Models.AntremanYoklama
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AntremanYoklama</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tarih)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tarih)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AntremanProgram.No)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AntremanProgram.No)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kullanici.Ad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kullanici.Ad)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.No }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

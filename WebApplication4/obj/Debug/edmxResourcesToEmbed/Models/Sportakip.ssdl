@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="antremantakipModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Antreman">
+    <Key>
+      <PropertyRef Name="No" />
+    </Key>
+    <Property Name="No" Type="int" Nullable="false" />
+    <Property Name="Ad" Type="varchar" MaxLength="50" />
+    <Property Name="AntremanTurNo" Type="int" />
+  </EntityType>
+  <EntityType Name="AntremanProgram">
+    <Key>
+      <PropertyRef Name="No" />
+    </Key>
+    <Property Name="No" Type="int" Nullable="false" />
+    <Property Name="AntremanNo" Type="int" />
+    <Property Name="AntremanBaslama" Type="date" />
+    <Property Name="AntremanBitis" Type="date" />
+    <Property Name="GunNo" Type="int" />
+  </EntityType>
+  <EntityType Name="AntremanYoklama">
+    <Key>
+      <PropertyRef Name="No" />
+    </Key>
+    <Property Name="No" Type="int" Nullable="false" />
+    <Property Name="AntremanProgramNo" Type="int" />
+    <Property Name="KullaniciNo" Type="int" />
+    <Property Name="Tarih" Type="date" />
+  </EntityType>
+  <EntityType Name="Duyuru">
+    <Key>
+      <PropertyRef Name="No" />
+    </Key>
+    <Property Name="No" Type="int" Nullable="false" />
+    <Property Name="DuyuruBaslik" Type="varchar" MaxLength="50" />
+    <Property Name="DuyuruMetin" Type="varchar(max)" />
+    <Property Name="tarih" Type="date" />
+  </EntityType>
+  <EntityType Name="Kullanici">
+    <Key>
+      <PropertyRef Name="No" />
+    </Key>
+    <Property Name="No" Type="int" Nullable="false" />
+    <Property Name="TcKimlikNo" Type="int" />
+    <Property Name="şifre" Type="nchar" MaxLength="10" />
+    <Property Name="Ad" Type="varchar" MaxLength="50" />
+    <Property Name="Soyad" Type="varchar" MaxLength="50" />
+    <Property Name="DogumTarihi" Type="varchar" MaxLength="50" />
+    <Property Name="KayitTarihi" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="KullaniciRol">
+    <Key>
+      <PropertyRef Name="No" />
+    </Key>
+    <Property Name="No" Type="int" Nullable="false" />
+    <Property Name="KullaniciNo" Type="int" />
+    <Property Name="RolNo" Type="int" />
+  </EntityType>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="no" />
+    </Key>
+    <Property Name="no" Type="int" Nullable="false" />
+    <Property Name="ıp" Type="varchar" MaxLength="50" />
+    <Property Name="tarayici" Type="varchar" MaxLength="50" />
+    <Property Name="tarih" Type="datetime" />
+    <Property Name="metot" Type="varchar" MaxLength="50" />
+    <Property Name="parametre" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Metot">
+    <Key>
+      <PropertyRef Name="No" />
+    </Key>
+    <Property Name="No" Type="int" Nullable="false" />
+    <Property Name="Ad" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="MetotRol">
+    <Key>
+      <PropertyRef Name="No" />
+    </Key>
+    <Property Name="No" Type="int" Nullable="false" />
+    <Property Name="MetotNo" Type="int" />
+    <Property Name="RolNo" Type="int" />
+  </EntityType>
+  <EntityType Name="Rol">
+    <Key>
+      <PropertyRef Name="No" />
+    </Key>
+    <Property Name="No" Type="int" Nullable="false" />
+    <Property Name="Ad" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_AntremanProgram_Antreman">
+    <End Role="Antreman" Type="Self.Antreman" Multiplicity="0..1" />
+    <End Role="AntremanProgram" Type="Self.AntremanProgram" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Antreman">
+        <PropertyRef Name="No" />
+      </Principal>
+      <Dependent Role="AntremanProgram">
+        <PropertyRef Name="AntremanNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AntremanYoklama_AntremanProgram">
+    <End Role="AntremanProgram" Type="Self.AntremanProgram" Multiplicity="0..1" />
+    <End Role="AntremanYoklama" Type="Self.AntremanYoklama" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AntremanProgram">
+        <PropertyRef Name="No" />
+      </Principal>
+      <Dependent Role="AntremanYoklama">
+        <PropertyRef Name="AntremanProgramNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AntremanYoklama_Kullanici">
+    <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="0..1" />
+    <End Role="AntremanYoklama" Type="Self.AntremanYoklama" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Kullanici">
+        <PropertyRef Name="No" />
+      </Principal>
+      <Dependent Role="AntremanYoklama">
+        <PropertyRef Name="KullaniciNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_KullaniciRol_Rol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+    <End Role="KullaniciRol" Type="Self.KullaniciRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="No" />
+      </Principal>
+      <Dependent Role="KullaniciRol">
+        <PropertyRef Name="RolNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MetotRol_Metot">
+    <End Role="Metot" Type="Self.Metot" Multiplicity="0..1" />
+    <End Role="MetotRol" Type="Self.MetotRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Metot">
+        <PropertyRef Name="No" />
+      </Principal>
+      <Dependent Role="MetotRol">
+        <PropertyRef Name="MetotNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MetotRol_Rol">
+    <End Role="Rol" Type="Self.Rol" Multiplicity="0..1" />
+    <End Role="MetotRol" Type="Self.MetotRol" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rol">
+        <PropertyRef Name="No" />
+      </Principal>
+      <Dependent Role="MetotRol">
+        <PropertyRef Name="RolNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="antremantakipModelStoreContainer">
+    <EntitySet Name="Antreman" EntityType="Self.Antreman" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AntremanProgram" EntityType="Self.AntremanProgram" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AntremanYoklama" EntityType="Self.AntremanYoklama" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Duyuru" EntityType="Self.Duyuru" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Kullanici" EntityType="Self.Kullanici" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KullaniciRol" EntityType="Self.KullaniciRol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Log" EntityType="Self.Log" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Metot" EntityType="Self.Metot" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MetotRol" EntityType="Self.MetotRol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AntremanProgram_Antreman" Association="Self.FK_AntremanProgram_Antreman">
+      <End Role="Antreman" EntitySet="Antreman" />
+      <End Role="AntremanProgram" EntitySet="AntremanProgram" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AntremanYoklama_AntremanProgram" Association="Self.FK_AntremanYoklama_AntremanProgram">
+      <End Role="AntremanProgram" EntitySet="AntremanProgram" />
+      <End Role="AntremanYoklama" EntitySet="AntremanYoklama" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AntremanYoklama_Kullanici" Association="Self.FK_AntremanYoklama_Kullanici">
+      <End Role="Kullanici" EntitySet="Kullanici" />
+      <End Role="AntremanYoklama" EntitySet="AntremanYoklama" />
+    </AssociationSet>
+    <AssociationSet Name="FK_KullaniciRol_Rol" Association="Self.FK_KullaniciRol_Rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="KullaniciRol" EntitySet="KullaniciRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MetotRol_Metot" Association="Self.FK_MetotRol_Metot">
+      <End Role="Metot" EntitySet="Metot" />
+      <End Role="MetotRol" EntitySet="MetotRol" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MetotRol_Rol" Association="Self.FK_MetotRol_Rol">
+      <End Role="Rol" EntitySet="Rol" />
+      <End Role="MetotRol" EntitySet="MetotRol" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
